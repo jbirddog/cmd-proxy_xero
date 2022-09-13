@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "cmd-proxy_xero"
+name = "connector-xero"
 version = "0.1.0"
 description = ""
 authors = ["Jon Herron <jon.herron@yahoo.com>"]
