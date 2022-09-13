@@ -16,7 +16,8 @@ def create_invoice(
 
         #reference: str,
         description: str,
-        contact_id: str,
+        contact_name: str,
+        contact_email: str,
         #created_date: str,
         #due_date: str,
 
@@ -46,13 +47,12 @@ def create_invoice(
         access_token = token
 
     api_instance = AccountingApi(api_client)
-    xero_tenant_id = get_xero_tenant_id(api_client, access_token)
     summarize_errors = 'True'
     unitdp = 2
     date_value = datetime.now()
     due_date_value = date_value + timedelta(days=7)
 
-    contact = Contact(contact_id = contact_id)
+    contact = Contact(name = contact_name, email_address = contact_email)
 
     line_item = LineItem(
         description = description,
@@ -73,15 +73,22 @@ def create_invoice(
         reference = "Created via Cmd-Proxy",
         status = "AUTHORISED")
 
-    invoices = Invoices( 
-        invoices = [invoice])
+    invoices = Invoices(invoices = [invoice])
 
-    created_invoices = api_instance.create_invoices(xero_tenant_id, invoices, summarize_errors, unitdp)
-    response = json.dumps(serialize(created_invoices))
+    try:
+        xero_tenant_id = get_xero_tenant_id(api_client, access_token)
+        created_invoices = api_instance.create_invoices(xero_tenant_id, 
+            invoices, summarize_errors, unitdp)
+        response = json.dumps(serialize(created_invoices))
+        status = 200
+    except Exception as e:
+        # TODO better error logging/reporting in debug
+        response = f'{{ "error": "{e.reason}" }}'
+        status = 500
 
     return {
-        'response': response, #json.dumps({'todo': f'create invoice in xero {access_token}' }),
-        'status': 200,
+        'response': response,
+        'status': status,
         'mimetype': 'application/json'
     }
 
