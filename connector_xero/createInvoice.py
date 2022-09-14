@@ -81,7 +81,7 @@ class CreateInvoice:
             date = date_value,
             due_date = due_date_value,
             line_items = line_items,
-            reference = "Created via Connector-Proxy",
+            reference = "Created by SpiffWorkflow",
             status = "AUTHORISED")
 
         invoices = Invoices(invoices = [invoice])
