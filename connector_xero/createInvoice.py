@@ -9,6 +9,128 @@ from xero_python.api_client.configuration import Configuration
 from xero_python.identity import IdentityApi
 from xero_python.api_client.serializer import serialize
 
+#
+# Sample response
+#
+
+# {
+#     "Invoices": [
+#         {
+#             "AmountDue": 21.85,
+#             "AmountPaid": 0.0,
+#             "BrandingThemeID": "324587a9-7eed-46c0-ad64-fa941a1b5b3e",
+#             "Contact": {
+#                 "Addresses": [
+#                     {
+#                         "AddressLine1": "79 Madison Ave, Fl 2",
+#                         "AddressLine2": "",
+#                         "AddressLine3": "",
+#                         "AddressLine4": "",
+#                         "AddressType": "STREET",
+#                         "AttentionTo": "",
+#                         "City": "New York",
+#                         "Country": "USA",
+#                         "PostalCode": "10016",
+#                         "Region": "NY"
+#                     },
+#                     {
+#                         "AddressLine1": "Nairn Towers, 901",
+#                         "AddressLine2": "120-130 Flinders Street",
+#                         "AddressType": "POBOX",
+#                         "AttentionTo": "",
+#                         "City": "Oaktown",
+#                         "Country": "",
+#                         "PostalCode": "89012",
+#                         "Region": "NY"
+#                     }
+#                 ],
+#                 "BankAccountDetails": "",
+#                 "ContactGroups": [
+#                     {
+#                         "ContactGroupID": "1b979d15-4ad9-42d7-8111-85b990477df0",
+#                         "Contacts": [],
+#                         "Name": "Training",
+#                         "Status": "ACTIVE"
+#                     }
+#                 ],
+#                 "ContactID": "375ac066-85a0-4044-a8be-3159856d5c85",
+#                 "ContactPersons": [],
+#                 "ContactStatus": "ACTIVE",
+#                 "EmailAddress": "info@rexmedia.co",
+#                 "FirstName": "",
+#                 "HasAttachments": false,
+#                 "HasValidationErrors": false,
+#                 "IsCustomer": true,
+#                 "IsSupplier": false,
+#                 "LastName": "",
+#                 "Name": "Rex Media Group",
+#                 "Phones": [
+#                     {
+#                         "PhoneAreaCode": "",
+#                         "PhoneCountryCode": "",
+#                         "PhoneNumber": "",
+#                         "PhoneType": "DDI"
+#                     },
+#                     {
+#                         "PhoneAreaCode": "",
+#                         "PhoneCountryCode": "",
+#                         "PhoneNumber": "",
+#                         "PhoneType": "FAX"
+#                     },
+#                     {
+#                         "PhoneAreaCode": "",
+#                         "PhoneCountryCode": "",
+#                         "PhoneNumber": "",
+#                         "PhoneType": "MOBILE"
+#                     },
+#                     {
+#                         "PhoneAreaCode": "201",
+#                         "PhoneCountryCode": "",
+#                         "PhoneNumber": "5556789",
+#                         "PhoneType": "DEFAULT"
+#                     }
+#                 ],
+#                 "PurchasesTrackingCategories": [],
+#                 "SalesTrackingCategories": [],
+#                 "UpdatedDateUTC": "/Date(1663005822390+0000)/"
+#             },
+#             "CurrencyCode": "USD",
+#             "CurrencyRate": 1.0,
+#             "Date": "/Date(1602288000000)/",
+#             "DueDate": "/Date(1603843200000)/",
+#             "HasAttachments": false,
+#             "HasErrors": false,
+#             "InvoiceID": "119f7d2e-0598-4dbb-823b-6f6d89823369",
+#             "InvoiceNumber": "INV-0074",
+#             "IsDiscounted": false,
+#             "LineAmountTypes": "Exclusive",
+#             "LineItems": [
+#                 {
+#                     "AccountCode": "400",
+#                     "Description": "Foobar",
+#                     "LineAmount": 20.0,
+#                     "LineItemID": "b3c5b459-2b91-4b00-8c94-b691f54ab464",
+#                     "Quantity": 1.0,
+#                     "TaxAmount": 1.85,
+#                     "TaxType": "OUTPUT",
+#                     "Tracking": [],
+#                     "UnitAmount": 20.0
+#                 }
+#             ],
+#             "Overpayments": [],
+#             "Prepayments": [],
+#             "Reference": "Website Design",
+#             "SentToContact": false,
+#             "Status": "AUTHORISED",
+#             "SubTotal": 20.0,
+#             "Total": 21.85,
+#             "TotalTax": 1.85,
+#             "Type": "ACCREC",
+#             "UpdatedDateUTC": "/Date(1663261898297+0000)/"
+#         }
+#     ]
+# }
+
 class CreateInvoice:
     def __init__(self, 
         client_id: str, 
